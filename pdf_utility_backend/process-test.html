@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>PDF Process Test</h3>
+        <label for="filename">Enter uploaded filename:</label>
+        <input type="text" id="filename" placeholder="e.g., 134847309283-test"/>
+        <button type="button" onclick="processPDF()">Process</button>
+
+        <p id="result"></p>
+        <script>
+            async function processPDF() {
+                const filename = document.getElementById('filename').value;
+                const resultEl = document.getElementById('result');
+
+                try {
+                    const response = await fetch('http://localhost:3001/api/pdf/process', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({filename})
+                });
+
+                    const data = await response.json();
+                    resultEl.innerText = JSON.stringify(data);
+                } catch (err){
+                    resultEl.innerText = 'Error: ' + err.message;
+                }
+            }
+        </script>
+    </body>
+</html>

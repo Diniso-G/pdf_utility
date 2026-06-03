@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PDF Utility Tool</title>
+    </head>
+    <body>
+        <h2> PDF Utility Tool</h2>
+
+        <h3> Step 1 Upload a PDF</h3>
+        <input type="file" id="pdfFile" accept="application/pdf"/>
+        <button type="button" onclick="uploadPDF()"> Upload</button>
+        <p id ="uploadResult"></p>
+
+        <h3>STep 2 Process the PDF</h3>
+        <button type="button" onclick="compressPDF()">Process</button>
+        <p id="processResult"></p>
+        
+        <h3>STep 3 Merge PDFs</h3>
+        <p> Enter files to merge (comma-separated):</p>
+        <input type="text" id="mergeFiles" placeholder="file1.pdf, file2.pdf"/>
+        <button type="button" onclick="mergePDF()">Merge</button>
+        <p id="mergeResult"></p>
+
+        <h3>STep 4 Split the PDF</h3>
+        <p> Enter filename to split:</p>
+        <input type="text" id="splitFile" placeholder="file.pdf"/>
+        <button type="button" onclick="splitPDF()">Split</button>
+        <p id="splitResult"></p>
+
+        <h3>STep 5 Download Processed PDF</h3>
+        <a id="downloadLink" href="#" download>Download</a>
+
+        <script>
+            let uploadedFilename ='';
+            let processedFilename ='';
+
+            async function uploadPDF() {
+                const fileInput = document.getElementById('pdfFile');
+                const resultEl = document.getElementById('uploadResult');
+
+                if (!fileInput.files.length){
+                    resultEl.innerText = 'Please select a PDF.';
+                    return;
+                }
+                const formData = new FormData();
+                formData.append('pdf', fileInput.files[0]);
+                
+                try {
+                    const response= await fetch('http://localhost:3001/api/pdf/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    uploadedFilename = data.file;
+                    resultEl.innerText = `Uploaded successfully: ${uploadedFilename}`;
+                    document.getElementById('processResult').innerText = '';
+                    document.getElementById('downloadLink').style.display = 'none';
+                } catch (err) {
+                    resultEl.innerText = 'Upload error:' + err.message;
+                }
+            }
+
+            async function compressPDF() {
+                const resultEl = document.getElementById('processResult');
+
+                if (!uploadedFilename){
+                    resultEl.innerText = 'No File uploaded yet.';
+                    return;
+                }
+                
+                try {
+                    const response= await fetch('http://localhost:3001/api/pdf/process', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body:JSON.stringify({filename: uploadedFilename})
+                    });
+                    const data = await response.json();
+
+                    if (data.error) {
+                        resultEl.innerText = `Processing error: ${data.error}`;
+                        return;
+                    }
+                    processedFilename = data.file;
+                    resultEl.innerText = `Processed ${processedFilename}`;
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = `http://localhost:3001/uploads/${processedFilename}`;
+                    downloadLink.style.display = 'inline';
+                } catch (err) {
+                    resultEl.innerText = 'Processing error:' + err.message;
+                }
+            }
+
+            async function mergePDF() {
+                const resultEl = document.getElementById('mergeResult');
+                const filesInput = document.getElementById('mergeFiles').value.trim();
+
+                if (!filesInput){
+                    resultEl.innerText = 'Enter file names to merge.';
+                    return;
+                }
+                const files = filesInput.split(',').map(f => f.trim());
+
+                try {
+                    const response= await fetch('http://localhost:3001/api/pdf/merge', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body:JSON.stringify({files})
+                    });
+                    const data = await response.json();
+                    resultEl.innerText = `Merged PDF: ${data.file}`;
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = `http://localhost:3001/uploads/${data.file}`;
+                    downloadLink.style.display = 'inline';
+                } catch (err) {
+                    resultEl.innerText = 'Merge error:' + err.message;
+                }
+            }
+
+            async function splitPDF() {
+            
+                const resultEl = document.getElementById('splitResult');
+                const filename = document.getElementById('splitFile').value.trim();
+
+                if (!filename){
+                    resultEl.innerText = 'Enter file name to split.';
+                    return;
+                }
+                
+                try {
+                    const response= await fetch('http://localhost:3001/api/pdf/split', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body:JSON.stringify({filename})
+                    });
+                    const data = await response.json();
+                    if(data.files && data.files.length) {
+                        resultEl.innerText = 'PDF Split successfully. <br>';
+                        const downloadLink = document.getElementById('downloadLink');
+                        downloadLink.style.display ='none';
+                        data.files.forEach(file => {
+                            const link = document.createElement('a');
+                            link.href = `http://localhost:3001/uploads/${file}`;
+                            link.innerText = file.split('/').pop();
+                            link.download = file.split('/').pop();
+                            link.style.display = 'block';
+                            resultEl.appendChild(link);
+                        });
+                    } else {
+                        resultEl.innerText = "No split files found.";
+                    }
+                } catch (err) {
+                    resultEl.innerText = 'Processing error:' + err.message;
+                }
+            }
+        </script>
+    </body>
+</html>
