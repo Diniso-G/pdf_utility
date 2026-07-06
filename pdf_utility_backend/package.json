@@ -1,9 +1,10 @@
 {
   "name": "pdf_utility_backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for PDF Utility Tool - handles server-side Word-to-PDF conversion",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +16,9 @@
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "multer": "^2.0.2",
-    "pdf-lib": "^1.17.1"
+    "pdf-lib": "^1.17.1",
+    "mammoth": "^1.7.2",
+    "puppeteer": "^22.12.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
