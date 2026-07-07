@@ -57,24 +57,34 @@ You should see `Server running on port 3000` in the terminal
 | Setup | BASE_URL |
 |---|---|
 |Android **emulator** | `http://10.0.2.2:3000` |
-|
+| Physical device, same wifi as the PC(device with the server) | `http://<PC's LAN IP>:300` (find via `ipconfig`) |
+| Physical device via USB (most reliable) | `http://localhost:3000`, plus run `adb reverse tcp:3000` first |
+|||
+
+The USB method was the one that ended up working reliably during development, since the test PC and phone were on different subnets even while "on same wifi."
+`adb reveser` forwards the phone's `localhost:3000` straight to the PC's `localhost:3000` over the USB cable, sidestepping wifi/subnet/firewall issues entirely.
+Note: this forward has to be re run any time the USB cable is reconnected or adb restarts.
+
+
+## Limitations
+- Word-To-PDF requires network access to reach the backend; it does not work offline(by design - this is the intentional hybrid trade-off)
+- Larger or more complex `.docx` files can take a while to convert (Puppeteer has to launch a full headless browser per request). the clinet's OkHttp timeouts are set generously to accomodate this, but very large documents may still need further optimization
+- Conversion quality depends on `mammoth`'s HTML extraction- simple document (Paragraphs, headings, bold/italic, basic lists) convert very close to the original. Complex layouts (tables, tracked changes, embedded objects, multicolumn text may not render indentically to Word)
+- Android only support for current version
+- No cloud storage, no database- the backend is intentionally stateless
 
 ## Security
-- File type and size validation
-- Temporary file clean up after processing
-- Private network-only backed during development
-- HTTPS recommended for deployment
+- File type and size validation on upload (20MB limit, `.docx`/`.doc` only)
+- Temporary file clean up after processing by deleting immediately after each processing step
+- Private network-backend intended for local network or USB-forwarded use during development
+- HTTPS recommended for any deployment beyond local development or on live demo
 
 ## Testing
 - HTML file to test workflow
 - port testing for PC and Device
 - System testing of full add after development
 
-## Limitations
-- Android only support for current version
-- No cloud storage
 
 ## Author
 Diniso Gwabeni
-Portfolio Project= PDF Utility Tool
-Version 1
+
