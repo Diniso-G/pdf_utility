@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     private Uri selectedWordUri;
     private List<File> splitPages = new ArrayList<>();
 
-    private CardView btnSelect, btnCompressNo, btnMerge, btnSplit, btnSelectWord, btnConvertWord;
+    private CardView btnSelect, btnCompressNo, btnMerge, btnSplit, /*btnSelectWord,*/ btnConvertWord;
     private TextView tvResult;
-    private LinearLayout layoutSplitPages;
+    private LinearLayout layoutSplitPages, btnSelectWord;
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
