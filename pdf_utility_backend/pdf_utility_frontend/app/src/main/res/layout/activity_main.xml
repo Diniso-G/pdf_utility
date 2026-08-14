@@ -299,7 +299,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@drawable/bg_gradient"
+                app:cardBackgroundColor="#6c4ab6"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -375,7 +375,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@drawable/bg_gradient"
+                app:cardBackgroundColor="#6c4ab6"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -451,7 +451,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@drawable/bg_gradient"
+                app:cardBackgroundColor="#6c4ab6"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -527,7 +527,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@drawable/bg_gradient"
+                app:cardBackgroundColor="#6c4ab6"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -640,7 +640,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@drawable/bg_gradient"
+                app:cardBackgroundColor="#6c4ab6"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -712,7 +712,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="14dp"
-            app:cardBackgroundColor="@drawable/bg_gradient"
+            app:cardBackgroundColor="#6c4ab6"
             app:cardElevation="0dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
