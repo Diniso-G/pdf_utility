@@ -1,222 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="56dp"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="24dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#E6F1FB"
-                app:cardElevation="0dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_picture_as_pdf"
-                    app:tint="#185FA5"/>
-            </androidx.cardview.widget.CardView>
-            
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PDF Utility Tool"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select, Add numbers, Merge &amp; Split"
-                    android:textSize="13sp"
-                    android:textColor="#CDB8F0"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACTIONS"
-            android:textSize="11sp"
-            android:textColor="#A980E0"
-            android:letterSpacing="0.08"
-            android:layout_marginBottom="10dp"/>
-
-        <include layout = "@layout/item_action_select"/>
-
-        <include layout = "@layout/item_action_compress"/>
-        <include layout = "@layout/item_action_merge"/>
-        <include layout = "@layout/item_action_split"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WORD TO PDF (REQUIRE SERVER"
-            android:textSize="11sp"
-            android:textColor="#A980E0"
-            android:letterSpacing="0.08"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="10dp"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnSelectWord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="14dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Word Document"
-                    android:textSize="14sp"
-                    android:textColor="#2B2140"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Choose a .docx file to convert"
-                    android:textSize="14sp"
-                    android:textColor="#9B7FCC"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnConvertWord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="14dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Convert to PDF"
-                    android:textSize="14sp"
-                    android:textColor="#2B2140"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Send the file to your server for conversion"
-                    android:textSize="12sp"
-                    android:textColor="#9B7FCC"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#FAEEDA"
-            app:cardElevation="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:gravity="top">
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_warning"
-                    app:tint="#854F0B"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="1dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Download or save your files after splitting before continuing."
-                    android:textSize="12sp"
-                    android:textColor="#633806"
-                    android:lineSpacingMultiplier="1.4"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="0dp"
-        android:layout_marginBottom="16dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="14dp">
-            <TextView
-                android:id="@+id/tvResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Results will appear after action"
-                android:textSize="13sp"
-                android:textColor="#9B7FCC"/>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/layoutSplitPages"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"/>
-            </HorizontalScrollView>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </LinearLayout>
-</ScrollView>
-
--->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -228,28 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
-        android:paddingTop="52dp"
-        android:paddingBottom="32dp">
+        android:animateLayoutChanges="true"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="42dp"
+        android:paddingBottom="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="28dp">
+            android:layout_marginBottom="26dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                app:cardCornerRadius="12dp"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:rotation="-6"
+                app:cardCornerRadius="18dp"
                 app:cardBackgroundColor="#ffffff"
-                app:cardElevation="0dp">
+                app:cardElevation="8dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_picture_as_pdf"
                     android:contentDescription="@null"/>
@@ -260,14 +45,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginStart="14dp">
+                android:layout_marginStart="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PDF Utility Tool"
                     android:fontFamily="sans-serif-black"
-                    android:textSize="22sp"
+                    android:textSize="27sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.01"
                     android:textColor="#ffffff"/>
 
                 <TextView
@@ -276,330 +63,373 @@
                     android:text="Select, Add numbers, Merge &amp; Split"
                     android:textSize="13sp"
                     android:textColor="#CDB8F0"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="5dp"/>
             </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACTIONS"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="11sp"
-            android:textColor="#ffffff"
-            android:letterSpacing="0.14"
-            android:layout_marginBottom="10dp"/>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-
+            
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="#6c4ab6"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="#eefeff"
                 app:cardElevation="0dp">
 
-                <LinearLayout
-                    android:id="@+id/btnSelect"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="14dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:text="FREE"
+                    android:textColor="#4f46e5"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp" />
+                
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardElevation="2dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="#EDE0FF"
-                        app:cardElevation="0dp">
+            <LinearLayout
+                android:id="@+id/btnSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="17dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_file_copy"
-                            android:contentDescription="@null" />
-                    </androidx.cardview.widget.CardView>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select File"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="#ffffff" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Choose a PDF from your device"
-                            android:textSize="12sp"
-                            android:textColor="#CDB8F0"
-                            android:layout_marginTop="1dp"/>
-                    </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardBackgroundColor="#eef2ff"
+                    app:cardElevation="0dp">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_file_copy"
                         android:contentDescription="@null" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select PDF"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#111827" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose a PDF from your device"
+                        android:textSize="12sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="#eef2ff"
+                    app:cardElevation="0dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SELECT"
+                        android:textColor="#4f46e5"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.05"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                app:cardCornerRadius="3dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="#6c4ab6"
-                app:cardElevation="0dp">
+                android:text="PDF ACTIONS"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="11sp"
+                android:textColor="#F3F5F8"
+                android:letterSpacing="0.15"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:id="@+id/btnCompressNo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:gravity="center_vertical"
-                    android:padding="14dp"
+                    android:padding="17dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="#EDE0FF"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        app:cardCornerRadius="13dp"
+                        app:cardBackgroundColor="#dbeafe"
                         app:cardElevation="0dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_compress"
                             android:contentDescription="@null" />
                     </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Add numbers"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="#ffffff" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Compress numbers into PDF file"
-                            android:textSize="12sp"
-                            android:textColor="#CDB8F0"
-                            android:layout_marginTop="1dp"/>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right"
-                        android:contentDescription="@null" />
+                        android:text="Add numbers"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#111827"
+                        android:layout_marginTop="13dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compress numbers into PDF file"
+                        android:textSize="11sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="#6c4ab6"
-                app:cardElevation="0dp">
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:id="@+id/btnMerge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:gravity="center_vertical"
-                    android:padding="14dp"
+                    android:padding="17dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="#EDE0FF"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        app:cardCornerRadius="13dp"
+                        app:cardBackgroundColor="#dcfce7"
                         app:cardElevation="0dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_merge_type"
                             android:contentDescription="@null" />
                     </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Merge"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="#ffffff"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Combine several PDFs into one"
-                            android:textSize="12sp"
-                            android:textColor="#CDB8F0"
-                            android:layout_marginTop="1dp"/>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right"
-                        android:contentDescription="@null" />
+                        android:text="Merge PDFs"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#111827"
+                        android:layout_marginTop="13dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Combine several PDFs into one"
+                        android:textSize="11sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="28dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="#6c4ab6"
-                app:cardElevation="0dp">
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:id="@+id/btnSplit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:gravity="center_vertical"
-                    android:padding="14dp"
+                    android:padding="17dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="#EDE0FF"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        app:cardCornerRadius="13dp"
+                        app:cardBackgroundColor="#ffedd5"
                         app:cardElevation="0dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_content_cut"
                             android:contentDescription="@null" />
                     </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Split"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="#ffffff" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Break one PDF into separate pages"
-                            android:textSize="12sp"
-                            android:textColor="#CDB8F0"
-                            android:layout_marginTop="1dp"/>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right"
-                        android:contentDescription="@null" />
+                        android:text="Split PDF"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#111827"
+                        android:layout_marginTop="13dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Separate pages"
+                        android:textSize="11sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#eef2ff"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="---"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="More tools"
+                        android:textColor="#4f46e5"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Coming Soon"
+                        android:textColor="#6366b8"
+                        android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="---"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="12dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                app:cardCornerRadius="3dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="0dp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -608,14 +438,16 @@
                 android:text="WORD TO PDF"
                 android:fontFamily="sans-serif-medium"
                 android:textSize="11sp"
-                android:textColor="#ffffff"
-                android:letterSpacing="0.14" />
+                android:textStyle="bold"
+                android:textColor="#FBFCFD"
+                android:letterSpacing="0.15"
+                android:layout_marginStart="8dp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardBackgroundColor="#EDE0FF"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="#f3e8ff"
                 app:cardElevation="0dp">
 
                 <TextView
@@ -623,152 +455,135 @@
                     android:layout_height="wrap_content"
                     android:text="REQUIRES SEVER"
                     android:textSize="9.5sp"
-                    android:textColor="@color/black"
+                    android:textColor="#7c3aed"
                     android:fontFamily="sans-serif-medium"
-                    android:letterSpacing="0.08"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="4dp" />
+                    android:letterSpacing="0.05"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="#6c4ab6"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:id="@+id/btnSelectWord"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="14dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:cardCornerRadius="20dp"
-                        app:cardBackgroundColor="#EDE0FF"
-                        app:cardElevation="0dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_picture_as_pdf"
-                            android:contentDescription="@null" />
-                    </androidx.cardview.widget.CardView>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select Word Document"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="#ffffff"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Choose a .docx file from your device to convert"
-                            android:textSize="12sp"
-                            android:textColor="#CDB8F0"
-                            android:layout_marginTop="1dp"/>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_file_copy"
-                        android:contentDescription="@null" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/btnConvertWord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="14dp"
-            app:cardBackgroundColor="#6c4ab6"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-            
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardElevation="2dp">
+
             <LinearLayout
+                android:id="@+id/btnSelectWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="14dp">
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_chevron_right"
-                    android:contentDescription="@null" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardBackgroundColor="#f3e8ff"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_file_copy"
+                        android:contentDescription="@null" />
+                </androidx.cardview.widget.CardView>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_marginStart="12dp">
-                    
+                    android:layout_marginStart="13dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Convert to PDF"
+                        android:text="Select Word Document"
                         android:textStyle="bold"
-                        android:textColor="#2b2140"
-                        android:textSize="14sp"/>
-
+                        android:textSize="14sp"
+                        android:textColor="#111827"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sends the file to sever for conversion"
+                        android:text="Choose a .docx file from your device to convert"
                         android:textSize="12sp"
-                        android:textColor="#ffffff"
-                        android:layout_marginTop="1dp" />
-
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnConvertWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#FAFDFF"
+                app:cardElevation="5dp"
+                android:layout_marginBottom="28dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="17dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Convert to PDF"
+                            android:textStyle="bold"
+                            android:textColor="#020202"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sends the file to sever for conversion"
+                            android:textSize="12sp"
+                            android:textColor="#050505"
+                            android:layout_marginTop="3dp" />
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardBackgroundColor="#ffffff"
+                        app:cardElevation="0dp">
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#EDE0FF"
+                android:layout_marginBottom="28dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#fff7ed"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -779,58 +594,64 @@
                     android:padding="14dp">
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/ic_warning"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="1dp"
-                        android:contentDescription="@null" />
+                        android:contentDescription="@null"/>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Download or save your files after splitting, before continue. Split pages aren't kept once you leave this screen."
-                        android:textSize="12.5sp"
-                        android:textColor="#633806"
-                        android:lineSpacingMultiplier="1.35" />
+                        android:layout_marginStart="10dp"
+                        android:text="Split pages are temporarily stored while this screen is open. Save your files before leaving."
+                        android:textColor="#7c2d12"
+                        android:textSize="12sp"
+                        android:lineSpacingMultiplier="1.3" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESULT"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="11sp"
-            android:textColor="#ffffff"
-            android:letterSpacing="0.14"
-            android:layout_marginBottom="10dp" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardBackgroundColor="#16a34a"
+                    app:cardElevation="0dp" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RESULT"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="11sp"
+                    android:textColor="#F6F7F8"
+                    android:letterSpacing="0.15"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#ffffff"
-                app:cardElevation="0dp">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:animateLayoutChanges="true"
+                    android:padding="17dp">
 
                     <TextView
                         android:id="@+id/tvResult"
@@ -838,29 +659,24 @@
                         android:layout_height="wrap_content"
                         android:text="Run an action above to see results here"
                         android:textSize="13sp"
-                        android:textColor="#CDB8F0" />
-                    
+                        android:textColor="#6b7280"
+                        android:lineSpacingMultiplier="1.2"/>
+
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:scrollbars="none">
-                        
+
                         <LinearLayout
                             android:id="@+id/layoutSplitPages"
                             android:orientation="horizontal"
+                            android:animateLayoutChanges="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp" />
+                            android:layout_height="wrap_content"/>
                     </HorizontalScrollView>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="top|end"
-                android:contentDescription="@null" />
-        </FrameLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </ScrollView>
