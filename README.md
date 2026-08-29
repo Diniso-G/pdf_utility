@@ -40,6 +40,50 @@ side)
 - `POST: /api/pdf/process `Process PDFs - JSON body `{fileID, operation: "docxToPDF"}`, returns {resultID}`
 - `GET: /api/pdf/open/:resultID` - streams back the converted PDF, then delets the temporary copy
 
+## Project structure
+
+```
+pdf_utility/
+|-- pdf_utility_backend/
+|   |-- controllers/
+|   |   |-- docxToPdfService.js
+|   |-- pdf_utility_frontend/
+|   |   |-- app/
+|   |   |   |-- src/
+|   |   |   |   |-- main/
+|   |   |   |   |   |--java/com/example/pdfutility/
+|   |   |   |   |   |   |-- MainActivity.java
+|   |   |   |   |   |   |-- SplashActivity.java
+|   |   |   |   |   |-- res/
+|   |   |   |   |   |   |-- layout/
+|   |   |   |   |   |   |-- drawable/
+|   |   |   |   |   |-- AndroidManifest.xml
+|   |   |-- gradle/
+|   |-- routes/
+|   |   |-- pdf.routes.js  
+|   |-- tmp/
+|   |-- utils/
+|   |   |-- pdfProcessor.js 
+|   |-- api_test.http 
+|   |-- index.js
+|   |-- package-lock.json
+|   |-- package.json
+|   |-- pdf_workflow.html
+|   |-- process-test.html  
+|   |-- test-upload.html  
+|   |-- .env  
+|-- README.md
+```
+---
+
+## Installation and Setup
+
+### Clone the repository
+```bash
+git clone https://github.com/Diniso-G/pdf_utility.git
+cd lms-project
+```
+
 
 ## Running the backend
 ```
