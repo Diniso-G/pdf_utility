@@ -1,35 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PDF Utility Tool</title>
+        <style>
+            body {background-color: rgb(196, 24, 244); margin: 0; padding: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+            h1, h2, h3 {color:rgb(251, 247, 247); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: 100%;}
+            h1 {font-size: 30px;}
+            h2 {font-size: 22px;}
+            h3 {font-size: 18px;}
+            p {color: inherit; font-size: 16px;}
+            .card {width: 100%; max-width: 800px;margin: auto;}
+            .small-card {box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background-color: blue; padding: 20px; margin: 15px 0; border-radius: 10px;}
+            button {padding: 8px 15px; cursor: pointer;}
+            input{padding:8px; margin: 5px 0;}
+        </style>
     </head>
     <body>
-        <h2> PDF Utility Tool</h2>
+        <div class="card">
+        <h1> PDF Utility Tool</h1>
+        <p>Select, Add Numbers, Merge & Split</p>
 
-        <h3> Step 1 Upload a PDF</h3>
+        <div class="actions">
+            <p>ACTIONS</p>
+        <div class="small_card">
+        <h3> Select PDF</h3>
+        
         <input type="file" id="pdfFile" accept="application/pdf"/>
         <button type="button" onclick="uploadPDF()"> Upload</button>
         <p id ="uploadResult"></p>
+        </div>
 
-        <h3>STep 2 Process the PDF</h3>
-        <button type="button" onclick="compressPDF()">Process</button>
+        <div class="small_card">
+        <h3>Add numbers</h3>
+        <button type="button" onclick="compressPDF()">Add numbers</button>
         <p id="processResult"></p>
+        </div>
         
-        <h3>STep 3 Merge PDFs</h3>
+        <div class="small_card">
+        <h3>Merge PDFs</h3>
         <p> Enter files to merge (comma-separated):</p>
         <input type="text" id="mergeFiles" placeholder="file1.pdf, file2.pdf"/>
         <button type="button" onclick="mergePDF()">Merge</button>
         <p id="mergeResult"></p>
+        </div>
 
-        <h3>STep 4 Split the PDF</h3>
+        <div class="small_card">
+        <h3>Split PDF</h3>
         <p> Enter filename to split:</p>
         <input type="text" id="splitFile" placeholder="file.pdf"/>
         <button type="button" onclick="splitPDF()">Split</button>
         <p id="splitResult"></p>
+        </div>
+        </div>
 
-        <h3>STep 5 Download Processed PDF</h3>
+        <div class="small_card">
+        <h2>RESULT</h2>
+        <p>Download Processed PDF</p>
         <a id="downloadLink" href="#" download>Download</a>
-
+        </div>
+        </div>
         <script>
             let uploadedFilename ='';
             let processedFilename ='';
