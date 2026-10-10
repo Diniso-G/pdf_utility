@@ -5,62 +5,91 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PDF Utility Tool</title>
         <style>
-            body {background-color: rgb(196, 24, 244); margin: 0; padding: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-            h1, h2, h3 {color:rgb(251, 247, 247); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: 100%;}
-            h1 {font-size: 30px;}
-            h2 {font-size: 22px;}
-            h3 {font-size: 18px;}
-            p {color: inherit; font-size: 16px;}
+            :root {
+                --bg-start: #3b1c78;
+                --bg-end: #7a3bc8;
+                --ink: #2b2140;
+                --lavender: #cdb9f0;
+                --label: #c4a6f2;
+                --muted: #8063bc;
+                --warn-bg: #faeeda;
+                --warn-ink: #633806;
+                --err: #b3261e;
+                --ok: #1f7a4d;
+            }
+            * {box-sizing: border-box;}
+            html {min-height: 100%;background: var(--bg-end);}
+            body {margin: 0; min-height: 100vh; color: var(--ink); font-family: Roboto, "Segoe UI", system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialised;}
+            h1 {margin: 0;font-size: 20px; font-weight: 700; color: #fff;}
+            .app {max-width: 480px; margin: 0 auto; padding: 40px 16px 32px;}
+            .tagline {margin: 2px 0 0; font-size: 13px; color: var(--lavender);}
+            .section-label {display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px; font-size: 11px; letter-spacing: 0.08em; color: var(--label);}
+            .section-label.spaced {margin-top: 6px;}
+            .status {display: inline-flex;align-items: center;gap: 6px;padding: 0; border: 0;background: none;cursor: pointer; font: inherit;font-size: 11px;letter-spacing:  0; color: var(--lavender);}
             .card {width: 100%; max-width: 800px;margin: auto;}
-            .small-card {box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background-color: blue; padding: 20px; margin: 15px 0; border-radius: 10px;}
+            .small_card {box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background-color: blue; padding: 20px; margin: 15px 0; border-radius: 10px;}
             button {padding: 8px 15px; cursor: pointer;}
             input{padding:8px; margin: 5px 0;}
         </style>
     </head>
     <body>
-        <div class="card">
-        <h1> PDF Utility Tool</h1>
-        <p>Select, Add Numbers, Merge & Split</p>
+        <main class="app">
+            <header class="header">
+                <div>
+                    <h1> PDF Utility Tool</h1>
+                    <p class="tagline">Select, Add Numbers, Merge & Split</p>
+                </div>
+            </header>
 
-        <div class="actions">
-            <p>ACTIONS</p>
-        <div class="small_card">
-        <h3> Select PDF</h3>
+            <p class="section-label">ACTIONS</p>
+            <label class="card action" for="pdfInput">
+                <span class="action-title">Select PDFs</span>
+                <span class="action-sub" id="pdfSub">Choose one or more PDF files</span>
+                <input class="sr-only" type="file" id="pdfInput" accept="application/pdf,.pdf" multiple>
+            </label>
+
+            <button class="card action" type="button" id="btnNumbers">
+                <span class="action-title">Add page numbers</span>
+                <span class="action-sub">Number every page of the selected PDF</span>
+            </button>
+
+            <button class="card action" type="button" id="btnMerge">
+                <span class="action-title">Merge PDFs</span>
+                <span class="action-sub">Combine the selected PDFs into one, in the order chosen</span>
+            </button>
+
+            <button class="card action" type="button" id="btnSplit">
+                <span class="action-title">Split PDF</span>
+                <span class="action-sub">Seperate the PDF into individual pages</span>
+            </button>
+
+            <div class="section-label spaced">
+                <span>WORD TO PDF (REQUIRES SERVER)</span>
+                <button class="status" type="button" id="serverStatus" title="Check the server again">
+                    <span class="dot" id="serverDot"></span><span id="serverText">Checking server...</span>
+                </button>
+            </div>
+
+            <label class="card action" for="wordInput">
+                <span class="action-title">Select Word Document</span>
+                <span class="action-sub" id="wordSub">Choose a .docx file to convert</span>
+                <input class="sr-only" type="file" id="wordInput" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            </label>
+
+            <button class="card action" type="button" id="btnConvert">
+                <span class="action-title">Convert to PDF</span>
+                <span class="action-sub">Send the file to your sever for conversion</span>
+            </button>
         
-        <input type="file" id="pdfFile" accept="application/pdf"/>
-        <button type="button" onclick="uploadPDF()"> Upload</button>
-        <p id ="uploadResult"></p>
-        </div>
+            <div class="card warning">
+                <p>Download or save your files after splitting before continuing.</p>
+            </div>
 
-        <div class="small_card">
-        <h3>Add numbers</h3>
-        <button type="button" onclick="compressPDF()">Add numbers</button>
-        <p id="processResult"></p>
-        </div>
-        
-        <div class="small_card">
-        <h3>Merge PDFs</h3>
-        <p> Enter files to merge (comma-separated):</p>
-        <input type="text" id="mergeFiles" placeholder="file1.pdf, file2.pdf"/>
-        <button type="button" onclick="mergePDF()">Merge</button>
-        <p id="mergeResult"></p>
-        </div>
-
-        <div class="small_card">
-        <h3>Split PDF</h3>
-        <p> Enter filename to split:</p>
-        <input type="text" id="splitFile" placeholder="file.pdf"/>
-        <button type="button" onclick="splitPDF()">Split</button>
-        <p id="splitResult"></p>
-        </div>
-        </div>
-
-        <div class="small_card">
-        <h2>RESULT</h2>
-        <p>Download Processed PDF</p>
-        <a id="downloadLink" href="#" download>Download</a>
-        </div>
-        </div>
+            <div class="card" id="resultCard">
+                <p id="resultText" role="status" aria-live="polite">Results will appear after action.</p>
+                <div class="links" id="resultLinks"></div>
+            </div>
+        </main>
         <script>
             let uploadedFilename ='';
             let processedFilename ='';
