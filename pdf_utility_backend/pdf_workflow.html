@@ -26,10 +26,28 @@
             .section-label {display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px; font-size: 11px; letter-spacing: 0.08em; color: var(--label);}
             .section-label.spaced {margin-top: 6px;}
             .status {display: inline-flex;align-items: center;gap: 6px;padding: 0; border: 0;background: none;cursor: pointer; font: inherit;font-size: 11px;letter-spacing:  0; color: var(--lavender);}
-            .card {width: 100%; max-width: 800px;margin: auto;}
-            .small_card {box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background-color: blue; padding: 20px; margin: 15px 0; border-radius: 10px;}
-            button {padding: 8px 15px; cursor: pointer;}
-            input{padding:8px; margin: 5px 0;}
+            .dot {width: 8px; height: 8px; border-radius: 50%; background: #a89bc4;}
+            .dot.on {background: #5bd58b;}
+            .dot.off {background: #ff8a80;}
+            .card {display: block; width: 100%; margin: 0 0 18px; padding: 14px; border: 0; border-radius: 10px; background: #fff; color: inherit; font: inherit; text-align: left;}
+            .action {cursor: pointer; transition: box-shadow 0.15s ease; transform:  0.08s ease;}
+            .action:hover {box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);}
+            .action:active {transform: scale(0.99);}
+            .action:focus-visible, .action:focus-within {outline: 3px solid #fff; outline-offset: 2px;}
+            .action:disabled {opacity: 0.6; cursor: pointer;}
+            .action-title {display: block; font-size: 14px; font-weight: 700; color: var(--ink);}
+            .action-sub {display: block; margin-top: 2px; font-size: 12px; color: var(--muted);}
+            
+            .warning {display: flex; gap: 10px; align-items: flex-start; margin: 16px 0; background: var(--warn-bg); color: var(--warn-ink); font-size: 12px; line-height: 1.4;}
+            .warning p {margin: 0;}
+            #resultText {margin: 0;font-size: 12px; color: var(--muted); overflow-wrap: anywhere;}
+            #resultText.ok {color: var(--ok);}
+            #resultText.err {color: var(--err);}
+            .links {display: flex; gap: 8px; margin-top: 10px; padding-bottom: 4px; overflow-x: auto;}
+            .links:empty {display: none;}
+            .links a {flex: none;padding: 8px 14px; border-radius: 8px;background: #efe7fa; color: #4b2a8a; font-size: 13px; font-weight: 600;text-decoration: none;}
+            .links a:hover {background: #e3d6f6;}
+            .links a:focus-visible {outline: 3px solid #4b2a8a; outline-offset: 2px;}
         </style>
     </head>
     <body>
