@@ -108,9 +108,65 @@
                 <div class="links" id="resultLinks"></div>
             </div>
         </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
         <script>
-            let uploadedFilename ='';
-            let processedFilename ='';
+            const API_BASE = 'http://localhost:3000';
+            const $ = (id) => document.getElementById(id);
+
+            let pdfFiles = [];
+            let wordfFiles = null;
+            let busy = false;
+            let objectUrls = [];
+
+            function setResult(message, kind = '') {
+                const el = $('resultText');
+                el.textContent = message;
+                el.className = kind;
+            }
+
+            function clearLinks() {
+                objectUrls.forEach((u) => URL.revokeObjectURL(u));
+                objectUrls = [];
+                $('resultLinks').replaceChildren();
+            }
+
+            function addLink(label, bytesOrBlob, filename) {
+                const blob = bytesOrBlob instanceof Blob ? bytesOrBlob : new Blob([bytesOrBlob], {type: 'application/pdf'});
+                const url = URL.createObjectURL(blob);
+                objectUrls.push(url);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.textContent = label;
+                $('resultLinks').appendChild(a);
+            }
+
+            function setBusy(state) {
+                busy = state;
+                document.querySelectorAll('button.action').forEach((b) => {b.disabled = state;});
+            }
+
+            function friendlyError(err) {
+                if (err instanceof TypeError) {
+                    return `Could not reach the server at ${API_BASE}. Check that it is running (npm start) and try again.`;
+                }
+                return err.message || 'Something went wrong.';
+            }
+
+            async function run(message, task) {
+                if (busy) return;
+                setBusy(true);
+                clearLinks();
+                setResult(message);
+                try {
+                    await task();
+                } catch (err) {
+                    console.error(err);
+                    setResult(friendlyError(err), 'err');
+                } finally {
+                    setBusy(false);
+                }
+            }
 
             async function uploadPDF() {
                 const fileInput = document.getElementById('pdfFile');
