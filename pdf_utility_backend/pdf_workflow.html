@@ -204,6 +204,54 @@
                 }
             });
 
+            $('btnNumbers').addEventListener('click', () => run('Adding page numbers...', async () => {
+                const {PDFDocument, StandardFonts, rgb} = pdfLib();
+                requiredPdfs();
+                for (const file of pdfFiles){
+                    const doc = await PDFDocument.load(await file.arrayBuffer());
+                    const font = await doc.embedFont(StandardFonts.HelveticalBold);
+                    doc.getPages().forEach((page, i) => {
+                        const {width} = page.getSize();
+                        page.drawText(String(i + 1), {x: width - 50, y: 20, size: 12, font, color: rgb(0, 0, 0)});
+                    });
+                    addLink(`${file.name} (numbered)`, await doc.save(), `numbered_${file.name}`);
+                }
+                setResult('Page numbers added. Download your files below.', 'ok');
+            }));
+
+            $('btnMerge').addEventListener('click', () => run('Merging PDFs...', async () => {
+                const {PDFDocument} = pdfLib();
+                requiredPdfs(2);
+                const merged = await PDFDocument.create();
+                for (const file of pdfFiles){
+                    const src = await PDFDocument.load(await file.arrayBuffer());
+                    const pages = await merged.copyPages(src, src.getPagesIndices());
+                    pages.forEach((p) => merged.addPage(p));
+                }
+                addLink('Download merged.pdf', await merged.save(), 'merged.pdf');
+                setResult(`Merged ${pdfFiles.length} PDFs into one.`, 'ok');
+            }));
+
+            $('btnSplit').addEventListener('click', () => run('Splitting PDFs...', async () => {
+                const {PDFDocument} = pdfLib();
+                requiredPdfs();
+                let total = 0;
+                for (const file of pdfFiles){
+                    const src = await PDFDocument.load(await file.arrayBuffer());
+                    const base = baseName(file.name);
+                    for (const i of src.getPagesIndices()) {
+                        const single = await PDFDocument.create();
+                        const [page] = await single.copyPages(src, [i]);
+                        single.addPage(page);
+                        const label = pdfFiles.length > 1 ? `${base} - Page ${i + 1}` : `Page ${i + 1}`;
+                        addLink(label, await single.save(), `${base}_page_${i + 1}.pdf`);
+                        total++;
+                    }
+                }
+                setResult(`PDF split into ${total} pages.`, 'ok');
+            }));
+            
+            /*
             async function uploadPDF() {
                 const fileInput = document.getElementById('pdfFile');
                 const resultEl = document.getElementById('uploadResult');
@@ -321,7 +369,7 @@
                 } catch (err) {
                     resultEl.innerText = 'Processing error:' + err.message;
                 }
-            }
+            }*/
         </script>
     </body>
 </html>
