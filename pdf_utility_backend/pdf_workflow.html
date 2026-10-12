@@ -168,6 +168,42 @@
                 }
             }
 
+            function pdfLib() {
+                if (!window.PDFLib) throw new Error('The PDF library did not load. Check your internet connection and refresh.');
+                return window.PDFLib;
+            }
+
+            function requiredPdfs(min = 1) {
+                if (pdfFiles.length < min) {
+                    throw new Error(min > 1 ? `Select at least ${min} PDFs first.` : 'Please select PDF/s first.');
+                }
+            }
+
+            const baseName = (name) => name.replace(/\.[^.]+$/,'');
+
+            $('pdfInput').addEventListener('change', (e) => {
+                pdfFiles = [...e.target.files].filter((f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name));
+                const n = pdfFiles.length;
+                $('pdfSub').textContent = n ? `${n} PDF${n > 1 ? 's' : ''} selected` : 'Choose one or mpre PDF files';
+                clearLinks();
+                setResult(n ? `${n} PDF(s) selected.` : 'No PDFs selected.');
+            });
+
+            $('wordInput').addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file && /\.docx$/i.test(file.name)) {
+                    wordfFile = file;
+                    $('wordSub').textContent = file.name;
+                    clearLinks();
+                    setResult('Word document selected.');
+                } else {
+                    wordfFile = null;
+                    
+                    $('wordSub').textContent = 'Choose a .docx file to convert';
+                    setResult('Only .docx files are supported.', 'err');
+                }
+            });
+
             async function uploadPDF() {
                 const fileInput = document.getElementById('pdfFile');
                 const resultEl = document.getElementById('uploadResult');
