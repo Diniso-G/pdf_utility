@@ -21,7 +21,9 @@
             html {min-height: 100%;background: var(--bg-end);}
             body {margin: 0; min-height: 100vh; color: var(--ink); font-family: Roboto, "Segoe UI", system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialised;}
             h1 {margin: 0;font-size: 20px; font-weight: 700; color: #fff;}
-            .app {max-width: 480px; margin: 0 auto; padding: 40px 16px 32px;}
+            .app {max-width: 1000px; margin: 0 auto; padding: 40px 16px 32px;}
+            .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-bottom: 10px;}
+            .grid .card {margin: 0;}
             .tagline {margin: 2px 0 0; font-size: 13px; color: var(--lavender);}
             .section-label {display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px; font-size: 11px; letter-spacing: 0.08em; color: var(--label);}
             .section-label.spaced {margin-top: 6px;}
@@ -60,6 +62,7 @@
             </header>
 
             <p class="section-label">ACTIONS</p>
+            <div class="grid">
             <label class="card action" for="pdfInput">
                 <span class="action-title">Select PDFs</span>
                 <span class="action-sub" id="pdfSub">Choose one or more PDF files</span>
@@ -80,6 +83,7 @@
                 <span class="action-title">Split PDF</span>
                 <span class="action-sub">Seperate the PDF into individual pages</span>
             </button>
+            </div>
 
             <div class="section-label spaced">
                 <span>WORD TO PDF (REQUIRES SERVER)</span>
@@ -88,6 +92,7 @@
                 </button>
             </div>
 
+            <div class="grid">
             <label class="card action" for="wordInput">
                 <span class="action-title">Select Word Document</span>
                 <span class="action-sub" id="wordSub">Choose a .docx file to convert</span>
@@ -98,6 +103,7 @@
                 <span class="action-title">Convert to PDF</span>
                 <span class="action-sub">Send the file to your sever for conversion</span>
             </button>
+            </div>
         
             <div class="card warning">
                 <p>Download or save your files after splitting before continuing.</p>
