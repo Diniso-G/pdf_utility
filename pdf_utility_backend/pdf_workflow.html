@@ -250,6 +250,58 @@
                 }
                 setResult(`PDF split into ${total} pages.`, 'ok');
             }));
+
+            async function serverError(response, fallback) {
+                try {
+                    const data = await response.json();
+                    if (data && data.error) return `${fallback}: ${data.error}`;
+                } catch (_) {/*response was not JSON*/}
+                return `${fallback} (code ${response.status})`;
+            }
+
+            $('btnConvert').addEventListener('click', () => run('Converting Word document to PDF...', async () => {
+                if (!wordfFile) throw new Error('Please select a Word document first');
+                const form = new FormData();
+                form.append('file', wordfFile, wordfFile.name);
+                const upload = await fetch(`${API_BASE}/api/pdf/upload`, {method: 'POST', body: form});
+                if (!upload.ok) throw new Error(await serverError(upload, 'Upload failed'));
+                const { fileID} = await upload.json();
+
+                const process = await fetch(`${API_BASE}/api/pdf/process`, {method: 'POST', headers:{'Content-Type': 'application/json'}, body: JSON.stringify({fileID, operation: 'docxToPDF'})});
+                if (!process.ok) throw new Error(await serverError(process, 'Conversion failed'));
+                const { resultID} = await process.json();
+
+                const open = await fetch(`${API_BASE}/api/pdf/open/${resultID}`);
+                if (!open.ok) throw new Error(await serverError(open, 'Download failed'));
+                const blob = await open.blob();
+
+                const outName = `${baseName(wordfFile.name)}.pdf`;
+                addLink(`Download ${outName}`, blob, outName);
+                setResult('Word document converted to PDF.', 'ok');
+                setServerStatus(true);
+            }));
+
+            function setServerStatus(online) {
+                $('serverDot').className = `dot ${online ? 'on' : 'off'}`;
+                $('serverText').textContent = online ? 'Server online' : 'Server offline';
+            }
+
+            async function checkServer() {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 3000);
+                try {
+                    const res = await fetch(`${API_BASE}/`, {signal: controller.signal});
+                    setServerStatus(res.ok);
+                } catch (_) {
+                    setServerStatus(false);
+                } finally {
+                    clearTimeout(timer);
+                }
+            }
+
+            $('serverStatus').addEventListener('click', checkServer);
+            checkServer();
+            setInterval(checkServer, 15000);
             
             /*
             async function uploadPDF() {
