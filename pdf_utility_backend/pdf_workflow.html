@@ -209,7 +209,7 @@
                 requiredPdfs();
                 for (const file of pdfFiles){
                     const doc = await PDFDocument.load(await file.arrayBuffer());
-                    const font = await doc.embedFont(StandardFonts.HelveticalBold);
+                    const font = await doc.embedFont(StandardFonts.HelveticaBold);
                     doc.getPages().forEach((page, i) => {
                         const {width} = page.getSize();
                         page.drawText(String(i + 1), {x: width - 50, y: 20, size: 12, font, color: rgb(0, 0, 0)});
@@ -225,7 +225,7 @@
                 const merged = await PDFDocument.create();
                 for (const file of pdfFiles){
                     const src = await PDFDocument.load(await file.arrayBuffer());
-                    const pages = await merged.copyPages(src, src.getPagesIndices());
+                    const pages = await merged.copyPages(src, src.getPageIndices());
                     pages.forEach((p) => merged.addPage(p));
                 }
                 addLink('Download merged.pdf', await merged.save(), 'merged.pdf');
@@ -234,12 +234,12 @@
 
             $('btnSplit').addEventListener('click', () => run('Splitting PDFs...', async () => {
                 const {PDFDocument} = pdfLib();
-                requiredPdfs();
+                requiredPdfs(); 
                 let total = 0;
                 for (const file of pdfFiles){
                     const src = await PDFDocument.load(await file.arrayBuffer());
                     const base = baseName(file.name);
-                    for (const i of src.getPagesIndices()) {
+                    for (const i of src.getPageIndices()) {
                         const single = await PDFDocument.create();
                         const [page] = await single.copyPages(src, [i]);
                         single.addPage(page);
